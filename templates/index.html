@@ -1,0 +1,50 @@
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href='/static/style.css' />
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script>
+function on()
+{
+	jQuery.post('on',
+	function( data ) {
+		document.getElementById("light").innerHTML="Stan: "+data;
+	});
+}
+function off()
+{
+	jQuery.post('off',
+	function( data ) {
+		document.getElementById("light").innerHTML="Stan: "+data;
+	}); 
+}
+function isLit()
+{
+	jQuery.post('islit',
+	function( data ) {
+		document.getElementById("light").innerHTML="Stan: "+data;
+	}); 
+}
+setInterval(isLit,1000);
+</script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</head>
+<body>
+<div id="light">
+{% set another = lit %}
+{{ another }}
+</div>
+<div class="list-group list-group-lg">
+  <button type="button" onclick="on()" class="list-group-item"><span class="glyphicon glyphicon-flash"> Włącz</button>
+  <button type="button" onclick="off()" class="list-group-item"><span class="glyphicon glyphicon-off"> Wyłącz</button>
+  <button type="button" onclick="isLit()" class="list-group-item"><span class="glyphicon glyphicon-info-sign"> Sprawdź stan</button>
+</div>
+</body>
+</html>
